@@ -11,3 +11,4 @@ class TransactionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(TransactionCount)
+admin.site.register(User)

@@ -2,6 +2,11 @@ from rest_framework import serializers
 from core.models import *
 
 
+class UserSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+
 class TransactionCountSerializer(serializers.ModelSerializer):
     class Meta:
         model = TransactionCount
