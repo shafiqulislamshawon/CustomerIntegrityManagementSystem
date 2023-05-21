@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}Dashboard-v1{% endblock title %}
+{% block content %}
+            <style>
+
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table td,
+            .table th {
+                padding: 12px 15px;
+                border: 1px solid #ddd;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .table th {
+                {#background-color: #92c9e6;#}
+                color: #111111;
+            }
+
+            .table tbody tr:nth-child(even) {
+                {#background-color: #d1e8f5;#}
+            }
+
+            /*responsive*/
+
+            @media (max-width: 500px) {
+                .table thead {
+                    display: none;
+                }
+
+                .table,
+                .table tbody,
+                .table tr,
+                .table td {
+                    display: block;
+                    width: 100%;
+                }
+
+                .table tr {
+                    margin-bottom: 15px;
+                }
+
+                .table td {
+                    padding-left: 50%;
+                    text-align: left;
+                    position: relative;
+                }
+
+                .table td::before {
+                    content: attr(data-label);
+                    position: absolute;
+                    left: 0;
+                    width: 50%;
+                    padding-left: 15px;
+                    font-size: 15px;
+                    font-weight: bold;
+                    text-align: left;
+                }
+            }
+        </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <form class="d-flex">
+                            <div class="input-group">
+                                <h6>{{ date }}&nbsp &nbsp &nbsp</h6>
+                                <span class="input-group-text bg-primary border-primary text-white">
+                                                            <i class="mdi mdi-calendar-range font-13"></i>
+                                                        </span>
+                            </div>
+                        </form>
+                    </div>
+                    <h4 class="page-title">Dashboard</h4>
+                </div>
+            </div>
+        </div>
+
+        <h6>Suspicious Transaction between {{ startDate }} to {{ endDate }}</h6>
+        <br>
+        <br>
+        <br>
+           <section >
+            <table class="table">
+                <tr>
+                    <th rowspan="2" >Date</th>
+                    <th rowspan="2" >Receiver Wallet Number</th>
+                    <th rowspan="2" >Transaction Count</th>
+                    <th rowspan="2">Amount</th>
+                    <th rowspan="2">Alert</th>
+                    <th rowspan="2">Details</th>
+                </tr>
+                {% for tx in tx %}
+                <tr>
+                    <td>{{ tx.TransactionDate }}</td>
+                    <td>{{ tx.Receiver }}</td>
+                    <td>Details</td>
+                    <td>{{ tx.Amount }}</td>
+                    <td>{{ tx.status }}</td>
+                    <td>Details</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </section>
+
+    </div>
+{% endblock content %}

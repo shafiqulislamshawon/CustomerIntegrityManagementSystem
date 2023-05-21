@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import *
+from core import views
 
-app_name = 'core'
 
 urlpatterns = [
-    # path('', index, name='index'),
+    path('', views.index, name='index'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('profile/', views.profile, name='profile'),
+    path('logout', views.logout_request, name="logout")
 ]
