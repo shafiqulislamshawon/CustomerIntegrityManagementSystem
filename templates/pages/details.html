@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% load static %}
-{% block title %}Dashboard-v1{% endblock title %}
+{% block title %}{{ Reciver }} - details{% endblock title %}
 {% block content %}
-
             <style>
 
             .table {
@@ -99,73 +98,23 @@
                     <th rowspan="2" >Transaction Count</th>
                     <th rowspan="2">Amount</th>
                     <th rowspan="2">Alert</th>
-                    <th rowspan="2">Details</th>
                 </tr>
             </thead>
                     <tbody>
-                {% for tx in tx %}
+{#                {% for tx in tx %}#}
                 <tr>
                     <td>{{ tx.TransactionDate }}</td>
                     <td>{{ tx.Receiver }}</td>
                     <td>{{ tx.total_transaction }}</td>
                     <td>{{ tx.total_Amount }}</td>
                     <td>{{ tx.status }}</td>
-                    <td><a href="{% url 'details' tx.Receiver %}">Details</a></td>
                 </tr>
 
-                {% endfor %}
+{#                {% endfor %}#}
                                 <tbody>
 
             </table>
         </section>
-<section>
-    <div id="chart" style="display: flex; justify-content: center; align-items: center;"></div>
 
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script>
-        // Access the data passed from the view
-        var data = {{ total_tx|safe }};
-
-        // D3.js code to generate the pie chart
-        var width = 400;
-        var height = 400;
-        var radius = Math.min(width, height) / 2;
-
-        var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-        var svg = d3.select('#chart')
-            .append('svg')
-            .attr('width', width)
-            .attr('height', height)
-            .append('g')
-            .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-
-        var pie = d3.pie()
-            .value(function(d) { return d.value; });
-
-        var path = d3.arc()
-            .outerRadius(radius - 10)
-            .innerRadius(0);
-
-        var label = d3.arc()
-            .outerRadius(radius)
-            .innerRadius(radius - 80);
-
-        var arc = svg.selectAll('.arc')
-            .data(pie(data))
-            .enter()
-            .append('g')
-            .attr('class', 'arc');
-
-        arc.append('path')
-            .attr('d', path)
-            .attr('fill', function(d) { return color(d.data.label); });
-
-        arc.append('text')
-            .attr('transform', function(d) { return 'translate(' + label.centroid(d) + ')'; })
-            .attr('dy', '0.35em')
-            .text(function(d) { return d.data.label; });
-    </script>
-</section>
     </div>
 {% endblock content %}
