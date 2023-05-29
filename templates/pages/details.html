@@ -94,23 +94,23 @@
 
                 <tr>
                     <th rowspan="2" >Date</th>
-                    <th rowspan="2" >Receiver Wallet Number</th>
-                    <th rowspan="2" >Transaction Count</th>
+                    <th rowspan="2" >Tx Code</th>
+                    <th rowspan="2" >Sender</th>
+                    <th rowspan="2" >Receiver</th>
                     <th rowspan="2">Amount</th>
-                    <th rowspan="2">Alert</th>
                 </tr>
             </thead>
                     <tbody>
-{#                {% for tx in tx %}#}
+                {% for tx in details %}
                 <tr>
                     <td>{{ tx.TransactionDate }}</td>
+                    <td>{{ tx.TxCode }}</td>
+                    <td>{{ tx.Sender }}</td>
                     <td>{{ tx.Receiver }}</td>
-                    <td>{{ tx.total_transaction }}</td>
-                    <td>{{ tx.total_Amount }}</td>
-                    <td>{{ tx.status }}</td>
+                    <td>{{ tx.Amount }}</td>
                 </tr>
 
-{#                {% endfor %}#}
+                {% endfor %}
                                 <tbody>
 
             </table>

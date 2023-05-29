@@ -104,6 +104,7 @@
             </thead>
                     <tbody>
                 {% for tx in tx %}
+                    {% if tx.total_transaction >= 5 %}
                 <tr>
                     <td>{{ tx.TransactionDate }}</td>
                     <td>{{ tx.Receiver }}</td>
@@ -112,6 +113,8 @@
                     <td>{{ tx.status }}</td>
                     <td><a href="{% url 'details' tx.Receiver %}">Details</a></td>
                 </tr>
+
+                    {% endif %}
 
                 {% endfor %}
                                 <tbody>

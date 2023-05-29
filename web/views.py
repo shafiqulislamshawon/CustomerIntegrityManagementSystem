@@ -39,8 +39,8 @@ def details(request, Receiver):
     date = dt.date.today() - dt.timedelta(days=1)
     startDate = dt.date.today() - dt.timedelta(days=7)
     endDate = date
-    details = Transaction.objects.filter(TransactionDate__range=[startDate, endDate], Receiver=Receiver)
-    details = Transaction.objects.filter(TransactionDate__range=details)
+    details = Transaction.objects.filter(TransactionDate__range=[startDate, endDate], Receiver=Receiver).values('TxCode','Sender','Receiver','Amount','TransactionDate')
+    # details = Transaction.objects.filter(details)
     print(details)
     context = {
         'date': date,
